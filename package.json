@@ -1,0 +1,21 @@
+{
+  "name": "Blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:caizhenhong/Blog.git",
+  "author": "caizhenhong <1229542068@qq.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack server --config ./ui/config/webpack.config.base.js --config ./ui/config/webpack.config.dev.js --merge"
+  },
+  "devDependencies": {
+    "css-loader": "^6.5.1",
+    "html-webpack-plugin": "^5.5.0",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
+    "mini-css-extract-plugin": "^2.4.5",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.6.0"
+  }
+}
