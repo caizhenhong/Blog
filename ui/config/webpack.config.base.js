@@ -1,8 +1,8 @@
-const { resolve } = require('path')
+const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-const ui_path = resolve(__dirname, '../')
+const resolve = dir => path.resolve(path.resolve(__dirname, '../'), dir)
 
 const rules = [
   {
@@ -10,17 +10,33 @@ const rules = [
     type: 'asset',
     parser: { dataUrlCondition: { maxSize: 4 * 1024 } }
   },
+  
   {
     test: /(\.less$|\.css$)/i,
-    use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader']
-  }
+    use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader',{
+        loader: 'style-resources-loader',
+        options: { patterns: resolve('src/assets/style/variable.less'), injector: 'append' },
+      }]
+  },
+
+  {
+    test: /\.jsx*$/,
+    exclude: /node_modules/,
+    use: {
+      loader: 'babel-loader',
+      options: { 
+        presets: ['@babel/preset-env', '@babel/preset-react'], 
+        plugins: ['@babel/transform-runtime']  }
+    }
+  },
+  
 ]
 
 module.exports = {
-  entry: resolve(ui_path, 'src/index.js'),
+  entry: resolve('src/index.js'),
 
   resolve: {
-    alias: { '@': resolve(ui_path, '/src') },
+    alias: { '@': resolve('src') },
     extensions: ['.js', '.jsx'],
     mainFiles: ['index']
   },
@@ -28,7 +44,7 @@ module.exports = {
   module: { rules },
 
   plugins: [
-    new HtmlWebpackPlugin({ template: resolve(ui_path, 'public/index.html') }),
+    new HtmlWebpackPlugin({ template: resolve('public/index.html') }),
     new MiniCssExtractPlugin()
   ]
 }
