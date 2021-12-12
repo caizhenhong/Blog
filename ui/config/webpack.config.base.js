@@ -1,22 +1,19 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const resolve = dir => path.resolve(path.resolve(__dirname, '../'), dir)
+const resolve = dir => path.resolve(path.resolve(__dirname, '../'), dir);
 
 const rules = [
   {
     test: /\.(svg|png|jpg)$/i,
     type: 'asset',
-    parser: { dataUrlCondition: { maxSize: 4 * 1024 } }
+    parser: { dataUrlCondition: { maxSize: 0.5 * 1024 } },
   },
-  
+
   {
     test: /(\.less$|\.css$)/i,
-    use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader',{
-        loader: 'style-resources-loader',
-        options: { patterns: resolve('src/assets/style/variable.less'), injector: 'append' },
-      }]
+    use: [MiniCssExtractPlugin.loader, 'css-loader', 'less-loader'],
   },
 
   {
@@ -24,13 +21,13 @@ const rules = [
     exclude: /node_modules/,
     use: {
       loader: 'babel-loader',
-      options: { 
-        presets: ['@babel/preset-env', '@babel/preset-react'], 
-        plugins: ['@babel/transform-runtime']  }
-    }
+      options: {
+        presets: ['@babel/preset-env', '@babel/preset-react'],
+        plugins: ['@babel/transform-runtime'],
+      },
+    },
   },
-  
-]
+];
 
 module.exports = {
   entry: resolve('src/index.js'),
@@ -38,13 +35,13 @@ module.exports = {
   resolve: {
     alias: { '@': resolve('src') },
     extensions: ['.js', '.jsx'],
-    mainFiles: ['index']
+    mainFiles: ['index'],
   },
 
   module: { rules },
 
   plugins: [
     new HtmlWebpackPlugin({ template: resolve('public/index.html') }),
-    new MiniCssExtractPlugin()
-  ]
-}
+    new MiniCssExtractPlugin(),
+  ],
+};
