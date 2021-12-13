@@ -10,10 +10,11 @@ export const propsToClassname = (block, props) => {
 // 防抖
 export const debounce = (fn, delay) => {
   let timer;
+  const _this = this;
   return (...args) => {
     clearTimeout(timer);
     timer = setTimeout(() => {
-      fn.call(...args);
+      fn.call(_this, ...args);
     }, delay);
   };
 };

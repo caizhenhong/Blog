@@ -1,11 +1,11 @@
 import React, { Fragment } from 'react';
 import '@/assets/style/reset.less';
-import { Button } from '@/components/Base';
+import { Input } from '@/components/Base';
 
 const App = () => {
   return (
     <Fragment>
-      <Button size='large'>123</Button>
+      <Input shape='round'>123</Input>
     </Fragment>
   );
 };
