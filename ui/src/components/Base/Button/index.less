@@ -1,0 +1,47 @@
+@import '@/assets/style/variable';
+
+.com-button {
+  border: 1px solid #00000000;
+  box-shadow: 0 0 2px @gray_1;
+  cursor: pointer;
+  border-radius: 2px;
+
+  &:hover {
+    transition: opacity 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    opacity: 0.85;
+  }
+
+  &:active {
+    transition: none;
+    opacity: 0.6;
+  }
+
+  // 类型
+  &-type {
+    &_default {
+      border-color: @gray_2;
+      color: @black_2;
+    }
+    &_primary {
+      border-color: @primary;
+      background-color: @primary;
+      color: @white_2;
+    }
+  }
+
+  //大小
+  &-size {
+    &_default {
+      padding: 8px 20px;
+    }
+    &_large {
+      padding: 10px 24px;
+      font-size: 16px;
+    }
+  }
+
+  // 形状
+  &-shape_round {
+    border-radius: 25px;
+  }
+}

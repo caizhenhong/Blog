@@ -1,0 +1,43 @@
+@import '@/assets/style/variable';
+
+.com-input {
+  display: flex;
+  border: 1px solid @gray_2;
+  background-color: @gray_1;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+  &_focus {
+    border-color: @blue_1;
+    background-color: @white_1;
+  }
+
+  &-size {
+    &_default {
+      padding: 10px 0;
+    }
+  }
+
+  &-shape {
+    &_default {
+      border-radius: 3px;
+    }
+    &_round {
+      border-radius: 25px;
+    }
+  }
+
+  &-main {
+    flex: 1;
+    border: none;
+    outline: none;
+    background: none;
+  }
+
+  &-prefix {
+    margin-right: 14px;
+  }
+
+  &-suffix {
+    margin-left: 14px;
+  }
+}
