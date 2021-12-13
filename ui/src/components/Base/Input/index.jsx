@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
-import './index.less';
+import classNames from 'classnames';
 import { propsToClassname } from '@/utils';
+import './index.less';
 
 const Input = props => {
   const { shape, size, suffix, prefix, onChange, placeholder, type } = props;
 
   const [focus, setFocus] = useState(false);
 
-  const inputClassname = [
+  const inputClassname = classNames(
     'com-input',
-    focus ? 'com-input_focus' : '',
-    propsToClassname('com-input', { shape, size }),
-  ].join(' ');
+    { 'com-input_focus': focus },
+    propsToClassname('com-input', { shape, size })
+  );
 
   return (
     <div className={inputClassname}>
